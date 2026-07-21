@@ -1,1 +1,1 @@
-
+# Librerías que necesita el proyecto.
