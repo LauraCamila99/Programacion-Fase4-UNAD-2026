@@ -1,15 +1,15 @@
-from models.reserva_sala import ReservaSala
+from models.alquiler_equipo import AlquilerEquipo
 
-reserva = ReservaSala(
-    id_entidad=1,
-    nombre="Sala de Juntas",
-    descripcion="Reserva de sala para reuniones empresariales.",
-    costo_base=50000,
-    numero_sala=101,
-    capacidad=20,
-    horas_reserva=3
+alquiler = AlquilerEquipo(
+    id_entidad=2,
+    nombre="Alquiler de Portátiles",
+    descripcion="Servicio de alquiler de equipos portátiles.",
+    costo_base=30000,
+    tipo_equipo="Portátil",
+    cantidad=5,
+    dias_alquiler=2
 )
 
-print(reserva.mostrar_informacion())
-print(reserva.describir_servicio())
-print(f"Costo: ${reserva.calcular_costo():.2f}")
+print(alquiler.mostrar_informacion())
+print(alquiler.describir_servicio())
+print(f"Costo: ${alquiler.calcular_costo():.2f}")
