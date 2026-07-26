@@ -1,11 +1,15 @@
-from models.cliente import Cliente
+from models.reserva_sala import ReservaSala
 
-cliente = Cliente(
+reserva = ReservaSala(
     id_entidad=1,
-    nombre="Laura Tiusabá",
-    documento="CC123456",
-    correo="laura@gmail.com",
-    telefono="3143704859"
+    nombre="Sala de Juntas",
+    descripcion="Reserva de sala para reuniones empresariales.",
+    costo_base=50000,
+    numero_sala=101,
+    capacidad=20,
+    horas_reserva=3
 )
 
-print(cliente.mostrar_informacion())
+print(reserva.mostrar_informacion())
+print(reserva.describir_servicio())
+print(f"Costo: ${reserva.calcular_costo():.2f}")
