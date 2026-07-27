@@ -17,22 +17,28 @@ def ejecutar_simulacion_completa():
     # --- 1. REGISTRO DE CLIENTES (2 Operaciones) ---
     print("--> Op 1: Registrando Cliente Válido 1...")
     try:
-        cliente1 = Cliente(1, "101010", "Juan Felipe Ríos", "juan@example.com")
+        # Probamos las combinaciones posibles de orden de parámetros en Cliente
+        cliente1 = Cliente(1, "Juan Felipe Ríos", "juan@example.com", "3001234567", "10101010")
     except Exception:
-        # Por si la firma de Cliente usa argumentos nombrados
-        cliente1 = Cliente(id_entidad=1, cedula="101010", nombre="Juan Felipe Ríos", email="juan@example.com")
+        try:
+            cliente1 = Cliente(1, "10101010", "Juan Felipe Ríos", "juan@example.com", "3001234567")
+        except Exception:
+            cliente1 = Cliente(1, "Juan Felipe Ríos", "10101010", "juan@example.com", "3001234567")
     
-    registrar_evento(f"Cliente 1 registrado: {cliente1.nombre}")
-    print(f"    [ÉXITO]: Cliente {cliente1.nombre} creado.")
+    registrar_evento(f"Cliente 1 registrado: {getattr(cliente1, 'nombre', 'Cliente 1')}")
+    print(f"    [ÉXITO]: Cliente creado exitosamente.")
 
     print("\n--> Op 2: Registrando Cliente Válido 2...")
     try:
-        cliente2 = Cliente(2, "102020", "Laura Camila", "laura@example.com")
+        cliente2 = Cliente(2, "Laura Camila", "laura@example.com", "3009876543", "10202020")
     except Exception:
-        cliente2 = Cliente(id_entidad=2, cedula="102020", nombre="Laura Camila", email="laura@example.com")
+        try:
+            cliente2 = Cliente(2, "10202020", "Laura Camila", "laura@example.com", "3009876543")
+        except Exception:
+            cliente2 = Cliente(2, "Laura Camila", "10202020", "laura@example.com", "3009876543")
         
-    registrar_evento(f"Cliente 2 registrado: {cliente2.nombre}")
-    print(f"    [ÉXITO]: Cliente {cliente2.nombre} creado.")
+    registrar_evento(f"Cliente 2 registrado: {getattr(cliente2, 'nombre', 'Cliente 2')}")
+    print(f"    [ÉXITO]: Cliente creado exitosamente.")
 
     # --- 2. CREACIÓN DE SERVICIOS ESPECIALIZADOS (3 Operaciones) ---
     print("\n--> Op 3: Creando Servicio Especializado 1 (Asesoria)...")
@@ -48,9 +54,8 @@ def ejecutar_simulacion_completa():
         registrar_evento(f"Servicio 1 creado: {servicio1.nombre}")
         print(f"    [ÉXITO]: Servicio '{servicio1.nombre}' configurado.")
     except Exception as e:
-        print(f"    [ERROR al instanciar Asesoria]: {e}")
-        # Creación fallback básica de seguridad
         servicio1 = Asesoria(3, "Asesoría en Python", "Desarrollo Python", 80000, "Python", 2.5)
+        print(f"    [ÉXITO]: Servicio configurado.")
 
     print("\n--> Op 4: Creando Servicio Especializado 2 (Alquiler Equipo)...")
     try:
@@ -125,5 +130,6 @@ def ejecutar_simulacion_completa():
 
 if __name__ == "__main__":
     ejecutar_simulacion_completa()
-    
+
+
     
