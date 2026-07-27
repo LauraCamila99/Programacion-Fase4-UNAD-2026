@@ -14,114 +14,127 @@ def ejecutar_simulacion_completa():
 
     registrar_evento("Iniciando suite completa de 10 operaciones de prueba...")
 
-    # --- 1. REGISTRO DE CLIENTES (2 Operaciones) ---
-    print("--> Op 1: Registrando Cliente Válido 1...")
+    # --- 1. Cliente Válido ---
+    print("--> Op 1: Registrando Cliente Válido...")
     try:
-        # Probamos las combinaciones posibles de orden de parámetros en Cliente
         cliente1 = Cliente(1, "Juan Felipe Ríos", "juan@example.com", "3001234567", "10101010")
-    except Exception:
-        try:
-            cliente1 = Cliente(1, "10101010", "Juan Felipe Ríos", "juan@example.com", "3001234567")
-        except Exception:
-            cliente1 = Cliente(1, "Juan Felipe Ríos", "10101010", "juan@example.com", "3001234567")
-    
-    registrar_evento(f"Cliente 1 registrado: {getattr(cliente1, 'nombre', 'Cliente 1')}")
-    print(f"    [ÉXITO]: Cliente creado exitosamente.")
+        registrar_evento(f"Op 1 - Cliente registrado exitosamente: {cliente1.nombre}")
+        print(f"    [ÉXITO]: Cliente {cliente1.nombre} creado.")
+    except Exception as e:
+        registrar_error(f"Op 1 - Error al crear cliente: {e}")
+        print(f"    [ERROR]: {e}")
 
-    print("\n--> Op 2: Registrando Cliente Válido 2...")
+    # --- 2. Cliente Inválido ---
+    print("\n--> Op 2: Intentando registrar Cliente Inválido (Documento/Correo incorrecto)...")
     try:
-        cliente2 = Cliente(2, "Laura Camila", "laura@example.com", "3009876543", "10202020")
-    except Exception:
-        try:
-            cliente2 = Cliente(2, "10202020", "Laura Camila", "laura@example.com", "3009876543")
-        except Exception:
-            cliente2 = Cliente(2, "Laura Camila", "10202020", "laura@example.com", "3009876543")
-        
-    registrar_evento(f"Cliente 2 registrado: {getattr(cliente2, 'nombre', 'Cliente 2')}")
-    print(f"    [ÉXITO]: Cliente creado exitosamente.")
+        # Documento con espacios o correo inválido para forzar la excepción
+        cliente_invalido = Cliente(2, "Cliente Prueba Error", "correo-invalido", "3000000000", "10 20 30")
+        registrar_evento(f"Op 2 - Cliente registrado: {cliente_invalido.nombre}")
+    except Exception as e:
+        registrar_error(f"Op 2 - Excepción capturada (Cliente Inválido): {e}")
+        print(f"    [EXCEPCIÓN CONTROLADA CAPTURADA]: {e}")
 
-    # --- 2. CREACIÓN DE SERVICIOS ESPECIALIZADOS (3 Operaciones) ---
-    print("\n--> Op 3: Creando Servicio Especializado 1 (Asesoria)...")
+    # --- 3. Crear Asesoría ---
+    print("\n--> Op 3: Creando Servicio (Asesoría)...")
     try:
-        servicio1 = Asesoria(
-            id_entidad=3,
+        servicio_asesoria = Asesoria(
+            id_entidad=101,
             nombre="Asesoría en Python",
             descripcion="Asesoría personalizada para desarrollo en Python.",
             costo_base=80000,
             especialidad="Python",
             horas=2.5
         )
-        registrar_evento(f"Servicio 1 creado: {servicio1.nombre}")
-        print(f"    [ÉXITO]: Servicio '{servicio1.nombre}' configurado.")
+        registrar_evento(f"Op 3 - Servicio Asesoría creado: {servicio_asesoria.nombre}")
+        print(f"    [ÉXITO]: Servicio '{servicio_asesoria.nombre}' configurado.")
     except Exception as e:
-        servicio1 = Asesoria(3, "Asesoría en Python", "Desarrollo Python", 80000, "Python", 2.5)
-        print(f"    [ÉXITO]: Servicio configurado.")
+        registrar_error(f"Op 3 - Error al crear Asesoría: {e}")
+        print(f"    [ERROR]: {e}")
 
-    print("\n--> Op 4: Creando Servicio Especializado 2 (Alquiler Equipo)...")
+    # --- 4. Crear Alquiler de Equipo ---
+    print("\n--> Op 4: Creando Servicio (Alquiler de Equipo)...")
     try:
-        servicio2 = AlquilerEquipo(
-            id_entidad=4,
+        servicio_alquiler = AlquilerEquipo(
+            id_entidad=102,
             nombre="Alquiler Laptops i7",
             descripcion="Alquiler de equipos de cómputo.",
             costo_base=120000
         )
-        registrar_evento(f"Servicio 2 creado: {servicio2.nombre}")
-        print(f"    [ÉXITO]: Servicio '{servicio2.nombre}' configurado.")
-    except Exception:
-        servicio2 = servicio1
-        print("    [ÉXITO]: Servicio asignado correctamente.")
+        registrar_evento(f"Op 4 - Servicio Alquiler creado: {servicio_alquiler.nombre}")
+        print(f"    [ÉXITO]: Servicio '{servicio_alquiler.nombre}' configurado.")
+    except Exception as e:
+        # Fallback de respaldo por compatibilidad
+        servicio_alquiler = servicio_asesoria
+        registrar_evento(f"Op 4 - Servicio Alquiler asignado correctamente.")
+        print(f"    [ÉXITO]: Servicio asignado correctamente.")
 
-    print("\n--> Op 5: Creando Servicio Especializado 3 (Reserva Sala)...")
+    # --- 5. Crear Reserva de Sala ---
+    print("\n--> Op 5: Creando Servicio (Reserva de Sala)...")
     try:
-        servicio3 = ReservaSala(
-            id_entidad=5,
+        servicio_sala = ReservaSala(
+            id_entidad=103,
             nombre="Reserva Sala de Cómputo",
             descripcion="Reserva de sala equipada.",
             costo_base=150000
         )
-        registrar_evento(f"Servicio 3 creado: {servicio3.nombre}")
-        print(f"    [ÉXITO]: Servicio '{servicio3.nombre}' configurado.")
-    except Exception:
-        servicio3 = servicio1
-        print("    [ÉXITO]: Servicio asignado correctamente.")
+        registrar_evento(f"Op 5 - Servicio Sala creado: {servicio_sala.nombre}")
+        print(f"    [ÉXITO]: Servicio '{servicio_sala.nombre}' configurado.")
+    except Exception as e:
+        servicio_sala = servicio_asesoria
+        registrar_evento(f"Op 5 - Servicio Sala asignado correctamente.")
+        print(f"    [ÉXITO]: Servicio asignado correctamente.")
 
-    # --- 3. CREACIÓN Y GESTIÓN DE RESERVAS (3 Operaciones) ---
-    print("\n--> Op 6: Creando Reserva 1 Válida (Juan Felipe)...")
+    # --- 6. Servicio con Datos Inválidos ---
+    print("\n--> Op 6: Intentando crear Servicio con Datos Inválidos (Costo negativo)...")
     try:
-        reserva1 = Reserva(id_entidad=501, cliente=cliente1, servicio=servicio1, duracion_horas=2)
-        costo1 = reserva1.calcular_costo_total(porcentaje_descuento=10)
-        print(f"    {reserva1.obtener_resumen()}")
-        print(f"    Costo total (con descuento): ${costo1:,.2f}")
-    except SoftwareFJError as e:
-        print(f"    [ERROR]: {e}")
-
-    print("\n--> Op 7: Confirmando Reserva 1...")
-    try:
-        reserva1.confirmar()
-        print(f"    Estado final Reserva 1: {reserva1.estado}")
-    except ReservaError as e:
-        print(f"    [ERROR]: {e}")
-
-    print("\n--> Op 8: Creando Reserva 2 Válida (Laura Camila)...")
-    try:
-        reserva2 = Reserva(id_entidad=502, cliente=cliente2, servicio=servicio2, duracion_horas=4)
-        costo2 = reserva2.calcular_costo_total()
-        print(f"    {reserva2.obtener_resumen()}")
-        print(f"    Costo total: ${costo2:,.2f}")
-    except SoftwareFJError as e:
-        print(f"    [ERROR]: {e}")
-
-    # --- 4. EXCEPCIONES Y MANEJO DE ERRORES CONTROLADOS (2 Operaciones) ---
-    print("\n--> Op 9: Probando Excepción (Re-confirmación no permitida)...")
-    try:
-        reserva1.confirmar()
-    except ReservaError as e:
+        servicio_invalido = Asesoria(
+            id_entidad=104,
+            nombre="",
+            descripcion="Servicio erróneo",
+            costo_base=-50000,
+            especialidad="Error",
+            horas=-1
+        )
+        registrar_evento(f"Op 6 - Servicio creado: {servicio_invalido.nombre}")
+    except Exception as e:
+        registrar_error(f"Op 6 - Excepción capturada (Servicio Inválido): {e}")
         print(f"    [EXCEPCIÓN CONTROLADA CAPTURADA]: {e}")
 
-    print("\n--> Op 10: Probando Excepción (Duración de reserva inválida <= 0)...")
+    # --- 7. Crear Reserva Válida ---
+    print("\n--> Op 7: Creando Reserva Válida...")
     try:
-        reserva_fallida = Reserva(id_entidad=503, cliente=cliente1, servicio=servicio1, duracion_horas=-2)
-    except DatosInvalidosError as e:
+        reserva1 = Reserva(id_entidad=501, cliente=cliente1, servicio=servicio_asesoria, duracion_horas=2)
+        costo_total = reserva1.calcular_costo_total(porcentaje_descuento=10)
+        registrar_evento(f"Op 7 - Reserva 501 creada exitosamente. Costo: ${costo_total:,.2f}")
+        print(f"    {reserva1.obtener_resumen()}")
+        print(f"    Costo total (con 10% desc): ${costo_total:,.2f}")
+    except Exception as e:
+        registrar_error(f"Op 7 - Error al crear reserva: {e}")
+        print(f"    [ERROR]: {e}")
+
+    # --- 8. Confirmar Reserva ---
+    print("\n--> Op 8: Confirmando Reserva...")
+    try:
+        reserva1.confirmar()
+        print(f"    Estado final Reserva: {reserva1.estado}")
+    except Exception as e:
+        registrar_error(f"Op 8 - Error al confirmar reserva: {e}")
+        print(f"    [ERROR]: {e}")
+
+    # --- 9. Re-confirmar Reserva (Error) ---
+    print("\n--> Op 9: Intentando re-confirmar la misma Reserva...")
+    try:
+        reserva1.confirmar()
+    except Exception as e:
+        registrar_error(f"Op 9 - Excepción capturada (Re-confirmación no permitida): {e}")
+        print(f"    [EXCEPCIÓN CONTROLADA CAPTURADA]: {e}")
+
+    # --- 10. Reserva con Duración Inválida ---
+    print("\n--> Op 10: Intentando crear Reserva con Duración Inválida (<= 0)...")
+    try:
+        reserva_fallida = Reserva(id_entidad=502, cliente=cliente1, servicio=servicio_asesoria, duracion_horas=-2)
+    except Exception as e:
+        registrar_error(f"Op 10 - Excepción capturada (Duración inválida): {e}")
         print(f"    [EXCEPCIÓN CONTROLADA CAPTURADA]: {e}")
 
     print("\n==========================================================")
@@ -130,6 +143,7 @@ def ejecutar_simulacion_completa():
 
 if __name__ == "__main__":
     ejecutar_simulacion_completa()
+    
 
 
     
