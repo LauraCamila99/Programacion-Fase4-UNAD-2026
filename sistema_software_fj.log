@@ -1,18 +1,11 @@
-2026-07-27 12:31:50 [INFO] - Iniciando suite completa de 10 operaciones de prueba...
-2026-07-27 12:31:50 [INFO] - Servicio 1 creado: Asesoría en Python
-2026-07-27 12:34:43 [INFO] - Iniciando suite completa de 10 operaciones de prueba...
-2026-07-27 12:36:55 [INFO] - Iniciando suite completa de 10 operaciones de prueba...
-2026-07-27 12:38:08 [INFO] - Iniciando suite completa de 10 operaciones de prueba...
-2026-07-27 12:38:08 [INFO] - Cliente 1 registrado: Juan Felipe Ríos
-2026-07-27 12:38:08 [INFO] - Cliente 2 registrado: Laura Camila
-2026-07-27 12:38:08 [INFO] - Servicio 1 creado: Asesoría en Python
-2026-07-27 12:39:26 [INFO] - Iniciando suite completa de 10 operaciones de prueba...
-2026-07-27 12:39:26 [INFO] - Cliente 1 registrado: Juan Felipe Ríos
-2026-07-27 12:39:26 [INFO] - Cliente 2 registrado: Laura Camila
-2026-07-27 12:39:26 [INFO] - Servicio 1 creado: Asesoría en Python
-2026-07-27 12:39:26 [INFO] - Reserva 501 confirmada con éxito.
-2026-07-27 12:39:52 [INFO] - Iniciando suite completa de 10 operaciones de prueba...
-2026-07-27 12:39:52 [INFO] - Cliente 1 registrado: Juan Felipe Ríos
-2026-07-27 12:39:52 [INFO] - Cliente 2 registrado: Laura Camila
-2026-07-27 12:39:52 [INFO] - Servicio 1 creado: Asesoría en Python
-2026-07-27 12:39:52 [INFO] - Reserva 501 confirmada con éxito.
+2026-07-27 13:36:46 [INFO] - Iniciando suite completa de 10 operaciones de prueba...
+2026-07-27 13:36:46 [ERROR] - Op 1 - Error al crear cliente: El documento solo puede contener letras y números, sin espacios ni símbolos.
+2026-07-27 13:36:46 [ERROR] - Op 2 - Excepción capturada (Cliente Inválido): El documento solo puede contener letras y números, sin espacios ni símbolos.
+2026-07-27 13:36:46 [INFO] - Op 3 - Servicio Asesoría creado: Asesoría en Python
+2026-07-27 13:36:46 [INFO] - Op 4 - Servicio Alquiler asignado correctamente.
+2026-07-27 13:36:46 [INFO] - Op 5 - Servicio Sala asignado correctamente.
+2026-07-27 13:36:46 [ERROR] - Op 6 - Excepción capturada (Servicio Inválido): El nombre debe tener al menos 3 caracteres.
+2026-07-27 13:36:46 [ERROR] - Op 7 - Error al crear reserva: cannot access local variable 'cliente1' where it is not associated with a value
+2026-07-27 13:36:46 [ERROR] - Op 8 - Error al confirmar reserva: cannot access local variable 'reserva1' where it is not associated with a value
+2026-07-27 13:36:46 [ERROR] - Op 9 - Excepción capturada (Re-confirmación no permitida): cannot access local variable 'reserva1' where it is not associated with a value
+2026-07-27 13:36:46 [ERROR] - Op 10 - Excepción capturada (Duración inválida): cannot access local variable 'cliente1' where it is not associated with a value
