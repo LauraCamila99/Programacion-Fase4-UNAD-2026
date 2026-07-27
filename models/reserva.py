@@ -1,6 +1,6 @@
 from models.entidad import Entidad
 from exceptions.excepciones import ReservaError, DatosInvalidosError
-from utils.logger_config import registrar_evento, registrar_error
+from utils.logger import registrar_evento, registrar_error
 
 class Reserva(Entidad):
     """
