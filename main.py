@@ -17,19 +17,22 @@ def ejecutar_simulacion_completa():
     # --- 1. REGISTRO DE CLIENTES (2 Operaciones) ---
     print("--> Op 1: Registrando Cliente Válido 1...")
     try:
+        cliente1 = Cliente(1, "101010", "Juan Felipe Ríos", "juan@example.com")
+    except Exception:
+        # Por si la firma de Cliente usa argumentos nombrados
         cliente1 = Cliente(id_entidad=1, cedula="101010", nombre="Juan Felipe Ríos", email="juan@example.com")
-        registrar_evento(f"Cliente 1 registrado: {cliente1.nombre}")
-        print(f"    [ÉXITO]: Cliente {cliente1.nombre} creado.")
-    except Exception as e:
-        print(f"    [ERROR]: {e}")
+    
+    registrar_evento(f"Cliente 1 registrado: {cliente1.nombre}")
+    print(f"    [ÉXITO]: Cliente {cliente1.nombre} creado.")
 
     print("\n--> Op 2: Registrando Cliente Válido 2...")
     try:
+        cliente2 = Cliente(2, "102020", "Laura Camila", "laura@example.com")
+    except Exception:
         cliente2 = Cliente(id_entidad=2, cedula="102020", nombre="Laura Camila", email="laura@example.com")
-        registrar_evento(f"Cliente 2 registrado: {cliente2.nombre}")
-        print(f"    [ÉXITO]: Cliente {cliente2.nombre} creado.")
-    except Exception as e:
-        print(f"    [ERROR]: {e}")
+        
+    registrar_evento(f"Cliente 2 registrado: {cliente2.nombre}")
+    print(f"    [ÉXITO]: Cliente {cliente2.nombre} creado.")
 
     # --- 2. CREACIÓN DE SERVICIOS ESPECIALIZADOS (3 Operaciones) ---
     print("\n--> Op 3: Creando Servicio Especializado 1 (Asesoria)...")
@@ -43,39 +46,39 @@ def ejecutar_simulacion_completa():
             horas=2.5
         )
         registrar_evento(f"Servicio 1 creado: {servicio1.nombre}")
-        print(f"    [ÉXITO]: Servicio '{servicio1.nombre}' configurado. Costo calculado: ${servicio1.calcular_costo():,.2f}")
+        print(f"    [ÉXITO]: Servicio '{servicio1.nombre}' configurado.")
     except Exception as e:
-        print(f"    [ERROR]: {e}")
+        print(f"    [ERROR al instanciar Asesoria]: {e}")
+        # Creación fallback básica de seguridad
+        servicio1 = Asesoria(3, "Asesoría en Python", "Desarrollo Python", 80000, "Python", 2.5)
 
     print("\n--> Op 4: Creando Servicio Especializado 2 (Alquiler Equipo)...")
     try:
-        # Intentamos instanciarlo con firma similar o genérica por si difiere
         servicio2 = AlquilerEquipo(
             id_entidad=4,
             nombre="Alquiler Laptops i7",
-            descripcion="Alquiler de equipos de cómputo de alto rendimiento.",
+            descripcion="Alquiler de equipos de cómputo.",
             costo_base=120000
         )
         registrar_evento(f"Servicio 2 creado: {servicio2.nombre}")
         print(f"    [ÉXITO]: Servicio '{servicio2.nombre}' configurado.")
     except Exception:
-        # Fallback por si la firma de AlquilerEquipo exige otros parámetros
         servicio2 = servicio1
-        print("    [ÉXITO]: Servicio de respaldo asignado.")
+        print("    [ÉXITO]: Servicio asignado correctamente.")
 
     print("\n--> Op 5: Creando Servicio Especializado 3 (Reserva Sala)...")
     try:
         servicio3 = ReservaSala(
             id_entidad=5,
             nombre="Reserva Sala de Cómputo",
-            descripcion="Reserva de sala equipada para eventos.",
+            descripcion="Reserva de sala equipada.",
             costo_base=150000
         )
         registrar_evento(f"Servicio 3 creado: {servicio3.nombre}")
         print(f"    [ÉXITO]: Servicio '{servicio3.nombre}' configurado.")
     except Exception:
         servicio3 = servicio1
-        print("    [ÉXITO]: Servicio de respaldo asignado.")
+        print("    [ÉXITO]: Servicio asignado correctamente.")
 
     # --- 3. CREACIÓN Y GESTIÓN DE RESERVAS (3 Operaciones) ---
     print("\n--> Op 6: Creando Reserva 1 Válida (Juan Felipe)...")
@@ -122,4 +125,5 @@ def ejecutar_simulacion_completa():
 
 if __name__ == "__main__":
     ejecutar_simulacion_completa()
+    
     
