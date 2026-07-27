@@ -1,1 +1,3 @@
 # Librerías que necesita el proyecto.
+# Dependencias del proyecto Software FJ
+# Proyecto desarrollado con la biblioteca estándar de Python
